@@ -2,6 +2,22 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": ".",
+    "paths": {
+      "@/api/*": ["src/api/*"],
+      "@/assets/*": ["src/assets/*"],
+      "@/components/*": ["src/components/*"],
+      "@/forms/*": ["src/components/forms/*"],
+      "@/sections/*": ["src/components/sections/*"],
+      "@/templates/*": ["src/components/templates/*"],
+      "@/data/*": ["src/data/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/state/*": ["src/state/*"],
+      "@/styles/*": ["src/styles/*"],
+      "@/types/*": ["src/types/*"],
+      "@/utility/*": ["src/utility/*"],
+      "@/providers/*": ["src/utility/providers/*"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
