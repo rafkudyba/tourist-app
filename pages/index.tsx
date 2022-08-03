@@ -1,15 +1,18 @@
-import type { NextPage } from 'next'
-import TemplatePage from '@/components/templates/Layout.template';
+
 import {FC} from 'react';
 
-const Home:FC = () => {
+// Templates
+import TemplatePage from '@/components/templates/Layout.template';
+
+// Components
+import HomePage from '@/components/views/main/HomePage.component';
+
+const MainPage: FC = () => {
   return (
       <TemplatePage page={'Blog'}>
-        <div>
-
-        </div>
+          <HomePage />
       </TemplatePage>
   )
 }
 
-export default Home;
+export default MainPage;

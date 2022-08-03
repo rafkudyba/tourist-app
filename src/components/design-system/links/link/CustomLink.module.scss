@@ -1,0 +1,31 @@
+@import '/src/styles/variables';
+
+@mixin link {
+    // justify-self: center;
+    cursor: pointer;
+    // border: 2px solid purple;
+}
+
+.linkWr {
+    .linkName {
+        @include link;
+        color: $colorWhite;
+        align-self: center;
+
+        &:hover {
+            border-bottom: 2px solid $colorWhite;
+        }
+    }
+    
+    .linkNameHighlighted {
+        @include link;
+        color: $colorWhite;
+        align-self: center;
+
+        &:hover {
+            border-bottom: 2px solid $colorWhite;
+        }
+    }
+}
+
+

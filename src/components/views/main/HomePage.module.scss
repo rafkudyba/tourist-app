@@ -1,0 +1,55 @@
+@import "src/styles/variables";
+
+.wr {
+  width: 100%;
+  height: auto;
+  background-color: #0B1717;
+
+  .imgWrapper {
+    position: relative;
+    height: 1000px;
+    width: 100%;
+    background-image: url('../../../../public/band_logo.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-origin: border-box;
+    //background-size:;
+
+    .socialMediaBar {
+      position: absolute;
+      top: 50px;
+      display: flex;
+      justify-content: center;
+      background: transparent;
+      height: 50px;
+      width: 100%;
+
+      .mediaIcon {
+        height: 100%;
+        width: 800px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        svg {
+          fill: $colorBlack;
+          cursor: pointer;
+
+          &:hover {
+            fill: $colorWhite;
+          }
+        }
+
+      }
+
+
+    }
+
+    //.bandImage {
+    //  z-index: 3;
+    //  height: 30px;
+    //  filter: blur(2px);
+    //}
+  }
+
+}

@@ -1,0 +1,21 @@
+@import './../../../../styles/variables';
+
+.linkWr {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    border: {
+        style: solid;
+        width: 1px;
+        color: $colorBlack;
+    }
+    border-radius: 7px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $colorDarkGray;
+        color: $colorWhite
+    }
+}
