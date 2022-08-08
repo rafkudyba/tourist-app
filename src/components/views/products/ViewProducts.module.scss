@@ -1,95 +1,131 @@
 @import "src/styles/variables";
 
-.productsWr {
+.productsList {
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: 24px;
-  padding: 42px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  //background: #3f1e1e;
+  background-image: linear-gradient(#2f2f2f, $colorBlack 30%);
 
-  .productWr {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid transparent;
-    border-radius: 10px;
+  .productListHeader {
+    margin: 24px 0 12px 0;
+    padding: 0 24px;
+    text-decoration: underline;
+    color: $colorWhite;
+    text-align: center;
+    font-size: 36px;
+    //border-bottom: 1px solid $colorWhite;
+  }
 
-    height: 500px;
-    width: 300px;
+  .productListDescription {
+    color: $colorWhite;
+  }
 
-    &:hover {
-      border-radius: 10px;
-      //border: 2px solid $colorWhite;
+  .productsWr {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 42px;
 
-      .product {
-
-        .buttonWr {
-          background: rgba(0,0,0,0.8);
-
-          .productName {
-
-            display: block;
-          }
-          .button {
-            display: flex;
-
-          }
-        }
-      }
+    @media (max-width: 1600px) {
+      grid-template-columns: repeat(3, 1fr);
     }
 
-    .product {
+    @media (max-width: 1250px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 850px) {
+      grid-template-columns: 1fr;
+    }
+
+    .productWr {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 100%;
-      height: 100%;
-      //height: 500px;
-      //width: 300px;
-      background-repeat: no-repeat;
-      background-size: 100% auto;
-      background-position: center;
-      background-origin: border-box;
-      background-color: $colorWhite;
-      margin: 24px;
+      border: 2px solid transparent;
       border-radius: 10px;
+      margin: auto;
+      height: 500px;
+      width: 90%;
 
-      .buttonWr {
+      &:hover {
         border-radius: 10px;
+        width: 100%;
+        //border: 2px solid $colorWhite;
+
+        .product {
+
+          .buttonWr {
+            background: rgba(0,0,0,0.8);
+
+            .productName {
+
+              display: block;
+            }
+            .button {
+              display: flex;
+
+            }
+          }
+        }
+      }
+
+      .product {
         display: flex;
-        align-items: center;
         justify-content: center;
-        flex-direction: column;
+        align-items: center;
         width: 100%;
         height: 100%;
-        padding: 0 50px;
+        //height: 500px;
+        //width: 300px;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: center;
+        background-origin: border-box;
+        background-color: $colorWhite;
+        margin: 24px;
+        border-radius: 10px;
 
-        .productName {
-          display: none;
-          text-align: center;
-          font: {
-            size: 32px;
-            weight: bold;
-          }
-          color: $colorWhite;
-        }
-
-        .button {
-          display: none;
+        .buttonWr {
+          border-radius: 10px;
+          display: flex;
           align-items: center;
           justify-content: center;
-          width: 200px;
-          height: 50px;
-          border: 1px solid $colorWhite;
-          background: $colorBlack;
-          border-radius: 10px;
-          margin: 12px 0;
-          font: {
-            weight: 700;
+          flex-direction: column;
+          width: 100%;
+          height: 100%;
+          padding: 0 50px;
+
+          .productName {
+            display: none;
+            text-align: center;
+            font: {
+              size: 32px;
+              weight: bold;
+            }
+            color: $colorWhite;
           }
-          color: #cccaca;
-          cursor: pointer;
+
+          .button {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 50px;
+            border: 1px solid $colorWhite;
+            background: $colorBlack;
+            border-radius: 10px;
+            margin: 12px 0;
+            font: {
+              weight: 700;
+            }
+            color: #cccaca;
+            cursor: pointer;
+          }
         }
       }
     }

@@ -21,7 +21,8 @@ const ViewProductsView: FC = ({children}) => {
                     src: "https://ireland.apollo.olxcdn.com/v1/files/co8to7cue9wx-PL/image;s=1000x700",
                     alt: ""
                 }
-            ]
+            ],
+            olxLink: 'https://www.olx.pl/d/oferta/buldozer-koszulka-610-CID87-IDKBbJC.html'
         },
         {
             id: 2,
@@ -36,7 +37,8 @@ const ViewProductsView: FC = ({children}) => {
                     src: "https://ireland.apollo.olxcdn.com/v1/files/co8to7cue9wx-PL/image;s=1000x700",
                     alt: ""
                 }
-            ]
+            ],
+            olxLink: 'https://www.olx.pl/d/oferta/buldozer-koszulka-610-CID87-IDKBbJC.html'
         },
         {
             id: 3,
@@ -51,7 +53,9 @@ const ViewProductsView: FC = ({children}) => {
                     src: "https://ireland.apollo.olxcdn.com/v1/files/co8to7cue9wx-PL/image;s=1000x700",
                     alt: ""
                 }
-            ]
+            ],
+
+            olxLink: 'https://www.olx.pl/d/oferta/buldozer-koszulka-610-CID87-IDKBbJC.html'
         },
         {
             id: 4,
@@ -66,17 +70,26 @@ const ViewProductsView: FC = ({children}) => {
                     src: "https://ireland.apollo.olxcdn.com/v1/files/co8to7cue9wx-PL/image;s=1000x700",
                     alt: ""
                 }
-            ]
+            ],
+
+            olxLink: 'https://www.olx.pl/d/oferta/buldozer-koszulka-610-CID87-IDKBbJC.html'
         }
     ]
 
     return (
-        <div className={styles.productsWr}>
-            {dummyProductsList.map((product, index) => (
-                // <Link
-                //             href={`products/${String(product.id)}`}
-                //             key={index}
-                //     >
+        <div className={styles.productsList}>
+            <div className={styles.productListHeader}>
+                Nasze produkty
+            </div>
+            <div className={styles.productListDescription}>
+                Lorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sume
+            </div>
+            <div className={styles.productsWr}>
+                {dummyProductsList.map((product, index) => (
+                    // <Link
+                    //             href={`products/${String(product.id)}`}
+                    //             key={index}
+                    //     >
                     <div key={index} className={styles.productWr}>
                         <div
                             className={styles.product}
@@ -90,8 +103,8 @@ const ViewProductsView: FC = ({children}) => {
                                     {product.name}
                                 </div>
                                 <Link
-                                            href={`products/${String(product.id)}`}
-                                            key={index}
+                                    href={`products/${String(product.id)}`}
+                                    key={index}
                                 >
                                     <div
                                         className={styles.button}
@@ -101,10 +114,9 @@ const ViewProductsView: FC = ({children}) => {
 
                                 </Link>
                                 <a
-                                            href={`https://www.olx.pl/d/oferta/buldozer-koszulka-610-CID87-IDKBbJC.html`}
-                                            key={index}
-                                            target={"_blank"}
-                                            rel="noreferrer"
+                                    href={`${product.olxLink}`}
+                                    target={"_blank"}
+                                    rel="noreferrer"
                                 >
                                     <div
                                         className={styles.button}
@@ -117,18 +129,11 @@ const ViewProductsView: FC = ({children}) => {
 
                     </div>
                     // </Link>
-            ))}
+                ))}
 
+            </div>
         </div>
-        // <div className={styles.postsList}>
-        //     {dummyPostListItems.map((post, index) => (
-        //
-        //
-        //     ))
-        //
-        //     }
-        //
-        // </div>
+
 
     );
 }
