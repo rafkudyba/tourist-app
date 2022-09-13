@@ -1,14 +1,15 @@
-// Internal packages
 import { FC, useRef, useState } from 'react';
-
-// Swiper
+// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Image from 'next/image'
+
+// import required modules
 import { Pagination, FreeMode, Navigation, Thumbs  } from 'swiper';
+
 import 'swiper/css';
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-
 // Templates
 import TemplatePage from "@/components/templates/Layout.template";
 import TemplatePost from "@/components/templates/post/TemplatePost.template";

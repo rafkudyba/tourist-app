@@ -22,8 +22,13 @@ const Footer: FC<IFooter> = () => {
                         <Link href="/blog">Blog</Link>
                     </div>
                 </div>
-                <div className={styles.authorInfo}>
-                    Copyright &copy; {date} - Rafał Kudyba, Politechnika Rzeszowska 
+                <div className={styles.bottomWrapper}>
+                    <div className={styles.authPage}>
+                        <Link href="/admin">Zaloguj</Link>
+                    </div>
+                    <div className={styles.authorInfo}>
+                        Copyright &copy; {date} - Rafał Kudyba, Politechnika Rzeszowska
+                    </div>
                 </div>
             </div>
         </div>

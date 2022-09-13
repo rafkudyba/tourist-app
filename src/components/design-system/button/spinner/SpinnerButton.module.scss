@@ -1,0 +1,41 @@
+@import 'src/styles/variables';
+@import 'src/styles/animations';
+
+._wr {
+	width: 30px;
+	height: 10px;
+
+	.spin_wr {
+		width: 30px;
+
+		div {
+			width: 10px;
+			height: 10px;
+			background: {
+				color: $colorWhite;
+			};
+			border-radius: 100%;
+			display: inline-block;
+			-webkit-animation: interface-loader-bouncedelay 1.4s infinite ease-in-out both;
+			animation: interface-loader-bouncedelay 1.4s infinite ease-in-out both;
+		}
+
+		&.orange {
+			div {
+				background: {
+					color: $colorOrange;
+				};
+			}
+		}
+
+		.bnc_1 {
+			-webkit-animation-delay: -0.32s;
+			animation-delay: -0.32s;
+		}
+
+		.bnc_2 {
+			-webkit-animation-delay: -0.16s;
+			animation-delay: -0.16s;
+		}
+	}
+}

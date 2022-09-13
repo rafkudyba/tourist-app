@@ -1,0 +1,60 @@
+@import "src/styles/variables";
+
+.productWr {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 24px;
+
+  .productSwipperWr {
+    height: 70vh;
+    width: 80vw;
+
+    .productImg {
+      height: 100%;
+      width: 100%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      background-origin: border-box;
+    }
+  }
+
+  .productName {
+    margin: 20px;
+    font-size: 36px;
+    color: $colorWhite;
+  }
+
+  .productDescription {
+    width: 80vw;
+    color: $colorWhite;
+  }
+
+  .buttonWr {
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+      height: 50px;
+      background: $colorBlack;
+      border-radius: 10px;
+      margin: 12px 0;
+      font: {
+        weight: 700;
+      }
+      color: #cccaca;
+      cursor: pointer;
+
+      &:hover {
+        border: 1px solid $colorWhite;
+
+      }
+    }
+  }
+}

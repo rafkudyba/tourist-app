@@ -1,0 +1,46 @@
+@import "src/styles/variables";
+
+.container {
+  display: block;
+  flex-direction: row;
+  position: relative;
+  padding: 2px 0 2px 28px;
+  height: 40px;
+  color: $colorBlack;
+
+  input {
+    position: absolute;
+    opacity: 0;
+
+    &:checked ~ .checkmark {
+      background-color: $colorBlack;
+
+      &:after {
+        display: block;
+      }
+    }
+  }
+
+  .checkmark {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 100px;
+    border: {
+      width: 1.5px;
+      color: $colorLightGreen;
+      style: solid;
+    }
+    &:hover {
+      border-color: $colorDarkGreen;
+    }
+  }
+}
+
+.containerError {
+  .checkmark {
+    border-color: $colorRed;
+  }
+}

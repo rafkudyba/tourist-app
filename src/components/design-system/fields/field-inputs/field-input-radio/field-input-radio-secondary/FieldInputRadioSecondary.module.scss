@@ -1,0 +1,91 @@
+@import "src/styles/variables";
+
+.error {
+  height: 13px;
+  width: 13px;
+  background: $colorRed;
+  border-radius: 50%;
+  font-size: 12px;
+  position: absolute;
+  left: -24px;
+  color: $colorWhite;
+  padding-left: 5px;
+  margin-left: 3px;
+}
+
+.errorMessage {
+  position: absolute;
+  left: 24px;
+  top: 30px;
+  margin-top: 0px;
+  font-size: 12px;
+  font-weight: 400;
+  color: $colorRed;
+}
+
+.container {
+  display: flex;
+  position: relative;
+  padding: 2px 0 2px 28px;
+  height: 20px;
+  color: $colorBlack;
+
+  input {
+    position: absolute;
+    opacity: 0;
+
+    &:checked ~ .checkmark {
+      background-color: white;
+
+      &:after {
+        display: block;
+      }
+    }
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border: {
+      width: 1.5px;
+      color: $colorLightGreen;
+      style: solid;
+      radius: 50%;
+    }
+    &:hover {
+      border-color: $colorDarkGreen;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      display: none;
+      top: 3.5px;
+      left: 3.5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: $colorLightGreen;
+    }
+  }
+}
+
+.containerDisabled {
+  color: $colorLightGrey;
+  cursor: not-allowed;
+  .checkmark {
+    border-color: $colorLightGrey;
+    &:hover {
+      border-color: $colorLightGrey;
+    }
+  }
+}
+
+.containerError {
+  .checkmark {
+    border-color: $colorRed;
+  }
+}

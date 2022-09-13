@@ -25,13 +25,33 @@
         max-width: 500px;
       }
     }
-  
-    .authorInfo {
-      text-align: end;
-      font-size: 10px;
-      background-color: $colorBlack;
-      color: $colorWhite;
+
+    .bottomWrapper {
+      display: flex;
+      justify-content: space-between;
+
+      .authorInfo {
+        text-align: end;
+        font-size: 10px;
+        width: 50%;
+        background-color: $colorBlack;
+        color: $colorWhite;
+      }
+
+      .authPage {
+        font-size: 10px;
+        width: 50%;
+        background-color: $colorBlack;
+        color: $colorWhite;
+
+        a {
+
+          color: $colorWhite;
+        }
+      }
     }
+  
+
 
   }
  

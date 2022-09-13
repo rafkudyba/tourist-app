@@ -1,0 +1,42 @@
+@import "src/styles/variables";
+
+@mixin inactive {
+  background: Black;
+  color: Black;
+}
+
+.linkBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  outline: none;
+  color: white;
+}
+
+.primary {
+  width: 286px;
+  height: 47px;
+  background: Blue;
+  font-size: 18px;
+
+  &:hover {
+    background: green;
+  }
+}
+
+.secondary {
+  width: 255px;
+  height: 43px;
+  background: green;
+  font-size: 20px;
+}
+
+.inactive {
+  @include inactive;
+  cursor: default;
+
+  &:hover {
+    @include inactive;
+  }
+}
