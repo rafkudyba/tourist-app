@@ -1,8 +1,8 @@
 @import "src/styles/variables";
 
 @mixin inactive {
-  background: Black;
-  color: Black;
+  background: $colorBlack;
+  color: $colorBlack;
 }
 
 .linkBtn {
@@ -11,25 +11,38 @@
   align-items: center;
   border-radius: 5px;
   outline: none;
-  color: white;
+  color: $colorWhite;
 }
 
 .primary {
-  width: 286px;
-  height: 47px;
-  background: Blue;
+  width: auto;
+  height: 40px;
+  padding: 0 20px;
+  background: $colorBlack;
+  border: 1px solid $colorWhite;
   font-size: 18px;
 
   &:hover {
-    background: green;
+    background: $colorWhite;
+    border: 1px solid $colorBlack;
+    color: $colorBlack;
   }
 }
 
 .secondary {
-  width: 255px;
-  height: 43px;
-  background: green;
-  font-size: 20px;
+  width: auto;
+  height: 40px;
+  padding: 0 20px;
+  background: $colorLightGray;
+  border: 1px solid $colorBlack;
+  color: $colorBlack;
+  font-size: 18px;
+
+  &:hover {
+    background: $colorBeige;
+    border: 1px solid $colorWhite;
+    color: $colorLightGray;
+  }
 }
 
 .inactive {

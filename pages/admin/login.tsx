@@ -2,9 +2,9 @@ import { FC } from 'react';
 
 // Templates
 import {useRouter} from 'next/router';
-import LoginPageView from '@/components/views/admin/LoginPage.view';
+import LoginPageView from '@/components/views/admin/login/LoginPage.view';
 
-const AdminPage: FC = () => {
+const AdminLoginPage: FC = () => {
     const router = useRouter();
     const {productId} = router.query;
     return (
@@ -12,4 +12,4 @@ const AdminPage: FC = () => {
     );
 }
 
-export default AdminPage;
+export default AdminLoginPage;

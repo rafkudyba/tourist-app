@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 // styles
 import styles from './FieldInputText.module.scss';
@@ -12,7 +12,7 @@ interface IFieldInputText {
     error: boolean;
     onChange: (e: any) => void;
     value: string;
-    showErrors?: boolean;
+    errorMessage?: string;
 }
 
 const FieldInputText: React.FC<IFieldInputText> = ({
@@ -22,50 +22,35 @@ const FieldInputText: React.FC<IFieldInputText> = ({
                                                        placeholder,
                                                        error,
                                                        onChange,
-                                                        value,
-    showErrors
+                                                       value,
+                                                       errorMessage
                                                    }) => {
 
-    let containerClass = `${styles.container}`;
+    let inputClass = `${styles.input}`;
 
     if (error) {
-        containerClass += ` ${styles.error}`;
+        inputClass += ` ${styles.error}`;
     }
 
-    useEffect(() => {
-        console.log(
-            id,
-            name,
-            placeholder,
-            error,
-            showErrors,
-            value,
-            )
-    }, [id,
-        name,
-        placeholder,
-        error,
-        showErrors,
-        value])
-
     return (
-        <label
-            className={containerClass}
-            htmlFor={id}
-        >
-            {label}{id}
-            {name}
-            {placeholder}{error}
-            {showErrors}
-            {value}sas
+        <div className={styles.inputWr}>
+            <label
+                className={styles.label}
+                htmlFor={id}
+            >
+                {label}
+            </label>
             <input
                 id={id}
                 name={name}
                 defaultValue={value}
                 placeholder={placeholder}
                 onChange={onChange}
+                className={inputClass}
             />
-        </label>
+            {error && <div className={styles.errorMessage}>{errorMessage}</div>}
+
+        </div>
     );
 }
 

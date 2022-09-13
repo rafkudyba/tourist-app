@@ -9,15 +9,18 @@ interface ILinkButton {
     href: string;
     name: string;
     onClick?: (e: any)=>void;
+    type?: "primary" | "secondary";
 }
 
 const LinkButton: React.FC<ILinkButton> = ({
                                                href,
                                                 name,
-                                                onClick
+                                                onClick,
+                                               type
                                            }) => {
 
     let linkButtonClass = `${styles.linkBtn} ${styles.primary}`;
+    if (type === "secondary") linkButtonClass = `${styles.linkBtn} ${styles.secondary}`;
 
     return (
         <Link href={href} >

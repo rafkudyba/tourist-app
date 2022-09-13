@@ -24,7 +24,7 @@ const Footer: FC<IFooter> = () => {
                 </div>
                 <div className={styles.bottomWrapper}>
                     <div className={styles.authPage}>
-                        <Link href="/admin">Zaloguj</Link>
+                        <Link href="/admin/login">Zaloguj</Link>
                     </div>
                     <div className={styles.authorInfo}>
                         Copyright &copy; {date} - Rafał Kudyba, Politechnika Rzeszowska

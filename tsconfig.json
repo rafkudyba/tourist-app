@@ -15,7 +15,7 @@
       "@/state/*": ["src/state/*"],
       "@/styles/*": ["src/styles/*"],
       "@/types/*": ["src/types/*"],
-      "@/utility/*": ["src/utility/*"],
+      "@/utils/*": ["src/utils/*"],
       "@/providers/*": ["src/utility/providers/*"]
     },
     "allowJs": true,
