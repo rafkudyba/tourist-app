@@ -5,7 +5,11 @@ import Link from 'next/link';
 import styles from './ViewProducts.module.scss'
 import ButtonLink from '@/components/design-system/links/link-button/ButtonLink.component';
 
-const ViewProductsView: FC = ({children}) => {
+interface IProductsView {
+    products: any
+}
+
+const ViewProductsView: FC<IProductsView> = ({children, products}) => {
 
     const dummyProductsList = [
         {
