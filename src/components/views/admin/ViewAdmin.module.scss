@@ -1,0 +1,26 @@
+@import "src/styles/variables";
+
+.wrapper {
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .formWrapper {
+    height: auto;
+    width: 400px;
+    padding: 30px;
+    border: 2px solid $colorBlack;
+    border-radius: 8px;
+    background: $colorLightGray;
+
+    .buttonWr {
+      display: flex;
+      justify-content: right;
+      a {
+        margin: 0 10px;
+      }
+    }
+  }
+}

@@ -15,8 +15,10 @@ import TemplatePost from "@/components/templates/post/TemplatePost.template";
 
 // Styles
 import styles from './SectionProduct.module.scss';
+import {IProduct} from '../../../../pages/products';
 
 interface ISectionProduct {
+    product?: IProduct
     productId: number
 }
 
@@ -25,7 +27,7 @@ const dummyProductsList = [
         id: 1,
         name: 'Koszulka 610',
         description: 'Lorem ipsum dolor sit amet',
-        img: [
+        images: [
             {
                 src: "https://ireland.apollo.olxcdn.com/v1/files/jjbiypgxtwvx1-PL/image;s=1000x700",
                 alt: ""
@@ -41,7 +43,7 @@ const dummyProductsList = [
         id: 2,
         name: 'Koszulka',
         description: 'Lorem ipsum dolor sit amet',
-        img: [
+        images: [
             {
                 src: "https://ireland.apollo.olxcdn.com/v1/files/jjbiypgxtwvx1-PL/image;s=1000x700",
                 alt: ""
@@ -57,8 +59,8 @@ const dummyProductsList = [
 
 
 
-const SectionProduct: FC<ISectionProduct> = ({productId}) => {
-    const product = dummyProductsList.find((product) => {
+const SectionProduct: FC<ISectionProduct> = ({product, productId}) => {
+    const dummyProduct = dummyProductsList.find((product) => {
         return product.id === productId;
     })
     console.log(product)
@@ -73,7 +75,7 @@ const SectionProduct: FC<ISectionProduct> = ({productId}) => {
                             navigation={true}
                             className="mySwiper"
                         >
-                            {product.img.map((image, index) => (
+                            {product.images.map((image, index) => (
                                 <SwiperSlide key={index}>
                                     <div
                                         className={styles.productImg}

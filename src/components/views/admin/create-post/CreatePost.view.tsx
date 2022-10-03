@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import {FC, useRef} from 'react';
 
 // // Styles
 // import styles from './CreatePost.module.scss'
@@ -12,10 +12,16 @@ import { FC } from 'react';
 
 const CreatePostView: FC = ({children}) => {
 
+    const quillRef = useRef(null)
     // const {onChange, formErrors, showError, isFormValid} = useFormHook(data, isValid, showErrors, regexes);
+    // const quillEditor = new Quill
 
     return (
-        <></>
+        <>
+            <div ref={quillRef}>
+
+            </div>
+        </>
         // <div className={styles.wrapper}>
         //     <div className={styles.formWrapper}>
         //         <form>

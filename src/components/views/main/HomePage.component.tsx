@@ -13,10 +13,14 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import NotStartedIcon from '@mui/icons-material/NotStarted';
 import TemplateBlog from '@/templates/blog/TemplateBlog.component';
 import ViewProductsView from '@/components/views/products/ViewProducts.view';
+import {IProduct} from '../../../../pages/products';
+
+interface IHomePage {
+    products: IProduct[]
+}
 
 
-
-const HomePage: FC = () => {
+const HomePage: FC<IHomePage> = ({products}) => {
     return (
             <div className={styles.wr}>
                 <div className={styles.imgWrapper}>
@@ -41,7 +45,7 @@ const HomePage: FC = () => {
                 </div>
                 <div className={styles.productSection}>
                     <div className={styles.section}>
-                        <ViewProductsView />
+                        <ViewProductsView products={products} />
                     </div>
                     <Link href={'./products'}>
                         <div className={styles.productSectionButton}>

@@ -1,4 +1,5 @@
 import '@/styles/global.scss'
+import 'react-quill/dist/quill.snow.css'
 import type { AppProps } from 'next/app'
 import {useEffect} from 'react';
 import {ApolloClient, ApolloLink, ApolloProvider, from, HttpLink, InMemoryCache} from '@apollo/client';

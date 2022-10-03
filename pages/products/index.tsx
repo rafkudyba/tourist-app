@@ -7,14 +7,13 @@ import {QUERY_GET_PRODUCTS} from '@/api/query/QueryGetProducts';
 import client from './../../apollo-client'
 
 export interface IProduct {
-    description: string;
-    id: string;
+    id?: string;
+    name?: string;
+    description:string;
     images: {
-        name: string;
-        format: string;
-        data: string;
+        src: string;
+        alt: string;
     }[]
-    name: string;
     olxLink: string;
 }
 

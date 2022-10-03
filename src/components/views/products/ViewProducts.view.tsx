@@ -4,19 +4,33 @@ import Link from 'next/link';
 // Styles
 import styles from './ViewProducts.module.scss'
 import ButtonLink from '@/components/design-system/links/link-button/ButtonLink.component';
+import {IProduct} from '../../../../pages/products';
+
+export interface Product {
+    id?: string;
+    name?: string;
+    description?:string;
+    images: {
+        src: string;
+        alt: string;
+    }[]
+    olxLink: string;
+}
 
 interface IProductsView {
-    products: any
+    products: IProduct[]
 }
 
 const ViewProductsView: FC<IProductsView> = ({children, products}) => {
 
-    const dummyProductsList = [
+
+
+    const dummyProducts = [
         {
             id: 1,
             name: 'Koszulka 610',
             description: 'Lorem ipsum dolor sit amet',
-            img: [
+            images: [
                 {
                     src: "https://ireland.apollo.olxcdn.com/v1/files/jjbiypgxtwvx1-PL/image;s=1000x700",
                     alt: ""
@@ -32,7 +46,7 @@ const ViewProductsView: FC<IProductsView> = ({children, products}) => {
             id: 2,
             name: 'Koszulka',
             description: 'Lorem ipsum dolor sit amet',
-            img: [
+            images: [
                 {
                     src: "https://ireland.apollo.olxcdn.com/v1/files/jjbiypgxtwvx1-PL/image;s=1000x700",
                     alt: ""
@@ -48,7 +62,7 @@ const ViewProductsView: FC<IProductsView> = ({children, products}) => {
             id: 3,
             name: 'Koszulka',
             description: 'Lorem ipsum dolor sit amet',
-            img: [
+            images: [
                 {
                     src: "https://ireland.apollo.olxcdn.com/v1/files/jjbiypgxtwvx1-PL/image;s=1000x700",
                     alt: ""
@@ -65,7 +79,7 @@ const ViewProductsView: FC<IProductsView> = ({children, products}) => {
             id: 4,
             name: 'Koszulka',
             description: 'Lorem ipsum dolor sit amet',
-            img: [
+            images: [
                 {
                     src: "https://ireland.apollo.olxcdn.com/v1/files/jjbiypgxtwvx1-PL/image;s=1000x700",
                     alt: ""
@@ -89,7 +103,7 @@ const ViewProductsView: FC<IProductsView> = ({children, products}) => {
                 Lorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sume
             </div>
             <div className={styles.productsWr}>
-                {dummyProductsList.map((product, index) => (
+                {products && products.map((product, index) => (
                     // <Link
                     //             href={`products/${String(product.id)}`}
                     //             key={index}
@@ -98,7 +112,7 @@ const ViewProductsView: FC<IProductsView> = ({children, products}) => {
                         <div
                             className={styles.product}
                             style={{
-                                backgroundImage: `url(${product.img[1].src})`,
+                                backgroundImage: `url(${product.images[0].src})`,
                                 //     // height: '100px'
                             }}
                         >
