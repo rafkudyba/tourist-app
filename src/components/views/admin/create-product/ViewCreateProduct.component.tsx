@@ -1,12 +1,14 @@
-import { FC } from 'react';
+import {FC, useEffect, useState} from 'react';
 
 import styles from './ViewCreateProduct.module.scss';
 
 import dynamic from 'next/dynamic';
 import FieldInputText from '@/components/design-system/fields/field-inputs/field-input-text/FieldInputText.component';
 import {data, errorMessages, isValid, regexes, showErrors} from './ViewCreateProduct.data';
-import LinkButton from '@/components/design-system/links/link-button/LinkButton.component';
 import {useFormHook} from '@/components/form/form.hook';
+import ButtonSubmit from '@/components/design-system/button/button-submit/ButtonSubmit.component';
+import {MUTATION_CREATE_PRODUCT} from '@/api/mutation/MutationCreateProduct';
+import {useMutation} from '@apollo/client';
 
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {
     ssr: false,
@@ -53,26 +55,58 @@ const formats = [
     'video',
 ];
 
-// // Styles
-// import styles from './CreatePost.module.scss'
-// import FieldInputText from '@/components/design-system/fields/field-inputs/field-input-text/FieldInputText.component';
-// import {useFormHook} from '@/components/form/form.hook';
-// // import {data, isValid} from '@/components/form/data/login-form.data';
-// import FieldInputCheckbox
-//     from '@/components/design-system/fields/field-inputs/field-input-checkbox/FieldInputCheckbox.component';
-// import LinkButton from '@/components/design-system/links/link-button/LinkButton.component';
-// import {data, isValid, regexes, showErrors, errorMessages} from '@/components/views/admin/login/LoginPage.data';
-
 const ViewCreateProductComponent: FC = ({children}) => {
 
-
+    const [mutateFunction, response] = useMutation(MUTATION_CREATE_PRODUCT);
     const {onChange, formErrors, showError, isFormValid} = useFormHook(data, isValid, showErrors, regexes);
+
+    const [quillContent, setQuillContent] = useState('')
+    const [selectedImages, setSelectedImages] = useState<FileList | undefined | null>(undefined);
+    const [selectedImagesArray, setSelectedImagesArray] = useState<File[]>([]);
+    const onFormSubmit = async (e: Event) => {
+        e.preventDefault()
+        showError()
+        if (isFormValid) {
+            let imagesToUpload: {data: string, name: string, format: string}[] = []
+            await Promise.all(selectedImagesArray.map(async (image) => {
+                const imageStr = await toBase64(image);
+                if (!imageStr) return;
+                const splittedStr = String(imageStr).split('base64,')
+                const imageToUpload = {
+                    data: splittedStr[1],
+                    name: image.name.split('.')[0].replace(/\s/g, ''),
+                    format: image.type.split('/')[1]
+                }
+                imagesToUpload.push(imageToUpload)
+            }))
+
+            const requestBody = {
+                name: data.name,
+                olxLink: data.olxLink,
+                description: quillContent,
+                imagesToUpload: imagesToUpload
+            }
+            await mutateFunction({variables: {payload: requestBody}})
+        }
+    }
+
+    const toBase64 = (file: File) => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+
+    useEffect(() => {
+        if (selectedImages) {
+            for (let i = 0; i < selectedImages.length; i++) {
+                setSelectedImagesArray(Array.from(selectedImages))
+            }
+        }
+    }, [selectedImages])
 
     return (
         <div>
-            <button>
-                Dodaj post
-            </button>
             <form className={styles.contentWrapper}>
                 <FieldInputText
                     label="Nazwa"
@@ -80,59 +114,62 @@ const ViewCreateProductComponent: FC = ({children}) => {
                     name="name"
                     value={data.name}
                     onChange={onChange}
-                    placeholder="Username"
+                    placeholder="Nazwa"
                     error={formErrors.name}
                     errorMessage={errorMessages.name}
                 />
                 <FieldInputText
                     label="Link do portalu olx.pl"
-                    id="1"
+                    id="2"
                     name="olxLink"
                     value={data.olxLink}
                     onChange={onChange}
-                    placeholder="1"
+                    placeholder="Link do portalu olx.pl"
                     error={formErrors.olxLink}
                     errorMessage={errorMessages.olxLink}
                 />
-                <div className={styles.buttonWr}>
-                    <LinkButton href={"/"} name={"Wróć do strony"}  type={"secondary"} />
-                    <LinkButton href={isFormValid ? "/admin" : "#"} name={"Zaloguj"} onClick={showError} />
+                <div className={styles.quillWr}>
+                    <p>Opis produktu</p>
+                    <QuillNoSSRWrapper
+                        modules={modules}
+                        formats={formats}
+                        placeholder={"Opis produktu"}
+                        theme="snow"
+                        onChange={(content) => {
+                            setQuillContent(content)
+                        }}
+                    />
+                    <p className="ql-editor" dangerouslySetInnerHTML={{__html: quillContent}}/>
                 </div>
+                <div className={styles.imgWr}>
+                    <p>Dodaj zdjęcia</p>
+                    <input
+                        type="file"
+                        name="myImage"
+                        onChange={(event) => {
+                            console.log(event.target.files);
+                            setSelectedImages(event.target.files);
+                        }}
+                        accept="image/jpeg, image/png, image/jpg"
+                        multiple
+                    />
+
+                </div>
+                {
+                    selectedImagesArray.map((imageFile,index) => (
+                        <div key={index} className={styles.imgBlock}>
+                            <img alt="not fount" width={"250px"} src={URL.createObjectURL(imageFile)} />
+                        </div>))
+                }
             </form>
+
+            <div className={styles.buttonWr}>
+                <ButtonSubmit
+                    name={"Dodaj produkt"}
+                    onClick={onFormSubmit}
+                />
+            </div>
         </div>
-
-
-        // <div className={styles.wrapper}>
-        //     <div className={styles.formWrapper}>
-        //         <form>
-        //             <FieldInputText
-        //                 label="Username"
-        //                 id="1"
-        //                 name="username"
-        //                 value={data.username}
-        //                 onChange={onChange}
-        //                 placeholder="Username"
-        //                 error={formErrors.username}
-        //                 errorMessage={errorMessages.username}
-        //             />
-        //             <FieldInputText
-        //                 label="Password"
-        //                 id="1"
-        //                 name="password"
-        //                 value={data.password}
-        //                 onChange={onChange}
-        //                 placeholder="1"
-        //                 error={formErrors.password}
-        //                 errorMessage={errorMessages.password}
-        //             />
-        //             <div className={styles.buttonWr}>
-        //                 <LinkButton href={"/"} name={"Wróć do strony"}  type={"secondary"} />
-        //                 <LinkButton href={isFormValid ? "/admin" : "#"} name={"Zaloguj"} onClick={showError} />
-        //             </div>
-        //         </form>
-        //     </div>
-        //
-        // </div>
     );
 }
 

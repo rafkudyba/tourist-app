@@ -109,41 +109,44 @@ const ViewProductsView: FC<IProductsView> = ({children, products}) => {
                     //             key={index}
                     //     >
                     <div key={index} className={styles.productWr}>
-                        <div
-                            className={styles.product}
-                            style={{
-                                backgroundImage: `url(${product.images[0].src})`,
-                                //     // height: '100px'
-                            }}
-                        >
-                            <div className={styles.buttonWr}>
-                                <div className={styles.productName}>
-                                    {product.name}
-                                </div>
-                                <Link
-                                    href={`products/${String(product.id)}`}
-                                    key={index}
-                                >
-                                    <div
-                                        className={styles.button}
-                                    >
-                                        SZCZEGÓŁY
+                        {product.images[0]?.src
+                        ?
+                            <div
+                                className={styles.product}
+                                style={{
+                                    backgroundImage: `url(${product.images[0].src})`,
+                                    //     // height: '100px'
+                                }}
+                            >
+                                <div className={styles.buttonWr}>
+                                    <div className={styles.productName}>
+                                        {product.name}
                                     </div>
+                                    <Link
+                                        href={`products/${String(product.id)}`}
+                                        key={index}
+                                    >
+                                        <div
+                                            className={styles.button}
+                                        >
+                                            SZCZEGÓŁY
+                                        </div>
 
-                                </Link>
-                                <a
-                                    href={`${product.olxLink}`}
-                                    target={"_blank"}
-                                    rel="noreferrer"
-                                >
-                                    <div
-                                        className={styles.button}
+                                    </Link>
+                                    <a
+                                        href={`${product.olxLink}`}
+                                        target={'_blank'}
+                                        rel="noreferrer"
                                     >
-                                        OLX.PL
-                                    </div>
-                                </a>
+                                        <div
+                                            className={styles.button}
+                                        >
+                                            OLX.PL
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        : null}
 
                     </div>
                     // </Link>

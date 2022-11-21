@@ -1,7 +1,6 @@
 import { FC } from 'react';
 // Styles
 import styles from './TemplateAdminPage.module.scss'
-import Link from 'next/link';
 import LinkButton from '@/components/design-system/links/link-button/LinkButton.component';
 
 const TemplateAdminPage: FC = ({children}) => {
