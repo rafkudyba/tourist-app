@@ -1,36 +1,48 @@
 @import "src/styles/variables";
 
-.contentWrapper {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  padding: 20px;
 
-  .quillWr {
-    grid-column: 1/ span 2;
+.mainWr {
+  padding: 50px;
 
-    p {
-      margin-bottom: 10px;
+  .formHeader {
+    margin: 20px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 2px solid $colorBlack;
+  }
+
+  .contentWrapper {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+
+    .quillWr {
+      grid-column: 1/ span 2;
+
+      p {
+        margin-bottom: 10px;
+      }
+    }
+
+    .imgWr {
+      grid-column: 1/ span 2;
+    }
+
+    .imgBlock {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid $colorBlack;
     }
   }
 
-  .imgWr {
-    grid-column: 1/ span 2;
-  }
-
-  .imgBlock {
+  .buttonWr {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid $colorBlack;
+    margin-bottom: 20px;
   }
-}
-
-.buttonWr {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
 }

@@ -15,12 +15,17 @@
     border-radius: 8px;
     background: $colorLightGray;
 
+    .formHeader {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
     .buttonWr {
       display: flex;
-      justify-content: right;
-      a {
-        margin: 0 10px;
-      }
+      justify-content: space-between;
+      //a {
+      //  margin: 0 10px;
+      //}
     }
   }
 }

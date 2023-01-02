@@ -36,7 +36,6 @@ export async function getStaticProps() {
     const { data } = await client.query({
         query: QUERY_GET_PRODUCTS,
     });
-    console.log(data)
     // // eslint-disable-next-line react-hooks/rules-of-hooks
     // // const { loading, error, data } = useQuery(QUERY_GET_PRODUCTS);
     // console.log(data)

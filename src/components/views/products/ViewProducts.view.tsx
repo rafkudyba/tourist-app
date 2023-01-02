@@ -100,7 +100,7 @@ const ViewProductsView: FC<IProductsView> = ({children, products}) => {
                 Nasze produkty
             </div>
             <div className={styles.productListDescription}>
-                Lorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sumeLorem ip[sume
+                Tutaj możesz zobaczyć wszystkie dostępne produkty. Jeżeli jesteś zainteresowany ich zakupem zapraszamy na nasz profil na portalu OLX.pl.
             </div>
             <div className={styles.productsWr}>
                 {products && products.map((product, index) => (

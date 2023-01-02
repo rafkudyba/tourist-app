@@ -106,7 +106,8 @@ const ViewCreateProductComponent: FC = ({children}) => {
     }, [selectedImages])
 
     return (
-        <div>
+        <div className={styles.mainWr}>
+            <h1 className={styles.formHeader}>Dodaj produkt</h1>
             <form className={styles.contentWrapper}>
                 <FieldInputText
                     label="Nazwa"
@@ -139,7 +140,7 @@ const ViewCreateProductComponent: FC = ({children}) => {
                             setQuillContent(content)
                         }}
                     />
-                    <p className="ql-editor" dangerouslySetInnerHTML={{__html: quillContent}}/>
+                    {/*<p className="ql-editor" dangerouslySetInnerHTML={{__html: quillContent}}/>*/}
                 </div>
                 <div className={styles.imgWr}>
                     <p>Dodaj zdjęcia</p>

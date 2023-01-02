@@ -11,10 +11,7 @@ const TemplateAdminPage: FC = ({children}) => {
                 <div className={styles.linkWr}>
                     Admin panel
                     <div className={styles.link}>
-                        <LinkButton href={"/admin/edit-posts"} name={"Edytuj posty"}  type={"secondary"} />
-                    </div>
-                    <div className={styles.link}>
-                        <LinkButton href={"/admin/edit-products"} name={"Edytuj produkty"}  type={"secondary"} />
+                        <LinkButton href={"/admin/add-product"} name={"Dodaj produkt"}  type={"secondary"} />
                     </div>
                 </div>
             </div>

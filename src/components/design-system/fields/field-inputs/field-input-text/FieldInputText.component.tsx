@@ -12,6 +12,7 @@ interface IFieldInputText {
     error: boolean;
     onChange: (e: any) => void;
     value: string;
+    type?: string;
     errorMessage?: string;
 }
 
@@ -23,6 +24,7 @@ const FieldInputText: React.FC<IFieldInputText> = ({
                                                        error,
                                                        onChange,
                                                        value,
+                                                       type,
                                                        errorMessage
                                                    }) => {
 
@@ -47,6 +49,7 @@ const FieldInputText: React.FC<IFieldInputText> = ({
                 placeholder={placeholder}
                 onChange={onChange}
                 className={inputClass}
+                type={type}
             />
             {error && <div className={styles.errorMessage}>{errorMessage}</div>}
 

@@ -13,30 +13,32 @@ const LoginPageView: FC = () => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.formWrapper}>
+                <h2 className={styles.formHeader}>Zaloguj się</h2>
                 <form>
                     <FieldInputText
-                        label="Username"
+                        label="Nazwa użytkownika"
                         id="1"
                         name="username"
                         value={data.username}
                         onChange={onChange}
-                        placeholder="Username"
+                        placeholder="Tutaj wpisz swoją nazwę użytkownika"
                         error={formErrors.username}
                         errorMessage={errorMessages.username}
                     />
                     <FieldInputText
-                        label="Password"
+                        label="Hasło"
                         id="1"
                         name="password"
+                        type='password'
                         value={data.password}
-                        onChange={onChange}
-                        placeholder="1"
+                        onChange={(event) =>onChange(event)}
+                        placeholder="Tutaj wpisz swoje hasło"
                         error={formErrors.password}
                         errorMessage={errorMessages.password}
                     />
                     <div className={styles.buttonWr}>
                         <LinkButton href={"/"} name={"Wróć do strony"}  type={"secondary"} />
-                        <LinkButton href={isFormValid ? "/admin" : "#"} name={"Zaloguj"} onClick={showError} />
+                        <LinkButton href={isFormValid ? "/admin/add-product" : "#"} name={"Zaloguj"} onClick={showError} />
                     </div>
                 </form>
             </div>

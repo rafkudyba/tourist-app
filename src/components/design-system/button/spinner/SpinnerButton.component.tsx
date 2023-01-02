@@ -4,7 +4,7 @@ import React, {FC} from 'react';
 import styles from './SpinnerButton.module.scss';
 
 // Model
-import {SpinnerButtonModel} from '@design-system/spinner/button/SpinnerButton.model';
+import {SpinnerButtonModel} from '@/components/design-system/button/spinner/SpinnerButton.model';
 
 const SpinnerButton: FC<SpinnerButtonModel> = ({color}) => {
 	return (

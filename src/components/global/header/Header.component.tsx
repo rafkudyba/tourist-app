@@ -33,9 +33,10 @@ const Header: FC<IHeader> = ({page}) => {
             </div>
             <div className={`fx_ac ${styles.rightContent}`}>
                 <div className={`fx_sa ${styles.linksWr}`}>
-                    <CustomLink href='/blog' name={"Blog"} page={page}/>
+                    {/*<CustomLink href='/login' name={"Zaloguj"} page={page}/>*/}
+                    <CustomLink href='/' name={"Strona główna"} page={page}/>
                     <CustomLink href='/products' name={"Produkty"} page={page}/>
-                    <CustomLink href='/blog' name={"Section"} page={page}/>
+                    {/*<CustomLink href='/blog' name={"Section"} page={page}/>*/}
                 </div>
             </div>
             </div>

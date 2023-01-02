@@ -1,6 +1,11 @@
-import React, {useState} from "react";
+import React, {ChangeEvent, useState} from 'react';
 
-export const useFormHook = (data: Record<string, string>, isValid: Record<string, boolean>, showErrors: Record<string, boolean>, regexes: Record<string, RegExp | undefined>) => {
+export const useFormHook = (
+    data: Record<string, string>,
+    isValid: Record<string, boolean>,
+    showErrors: Record<string, boolean>,
+    regexes: Record<string, RegExp | undefined>
+) => {
     const [validation, setValidation] = useState(false);
 
     const [formState, setFormState] = useState(data);
@@ -33,19 +38,23 @@ export const useFormHook = (data: Record<string, string>, isValid: Record<string
         }))
     }
 
-    const onChange = (e: any) => {
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         const {value, name} = e.target;
         changeFormState(name, value)
         const regex = regexes[name];
         if (regex) {
-            regex.test(value) ? isValid[name] = true : isValid[name] = false;
+            regex.test(value)
+                ? isValid[name] = true
+                : isValid[name] = false;
         } else {
             isValid[name] = true;
         }
 
         if (validation){
             if (regex) {
-                regex.test(value) ? changeFormErrors(name, false) : changeFormErrors(name, true);
+                regex.test(value)
+                    ? changeFormErrors(name, false)
+                    : changeFormErrors(name, true);
             } else {
                 changeFormErrors(name, false);
             }
@@ -55,12 +64,11 @@ export const useFormHook = (data: Record<string, string>, isValid: Record<string
 
     const showError = () => {
         for (let key in isValid) {
-            (!isValid[key] && regexes[key]) ? changeFormErrors(key, true) : changeFormErrors(key, false);
+            (!isValid[key] && regexes[key])
+                ? changeFormErrors(key, true)
+                : changeFormErrors(key, false);
+            data[key] = formState[key];
         }
-        data.name = formState.name;
-        data.email = formState.email;
-        data.phone = formState.phone;
-        data.agreement = formState.agreement;
         setValidation(true);
     }
 

@@ -91,6 +91,10 @@ const SectionProduct: FC<ISectionProduct> = ({product, productId}) => {
                     <div className={styles.productName}>
                         {product.name}
                     </div>
+                    <div
+                        className={styles.productDescription}
+                        dangerouslySetInnerHTML={{__html: product.description}}
+                    />
                     <div className={styles.buttonWr}>
                         <a
                             href={`${product.olxLink}`}
@@ -105,10 +109,6 @@ const SectionProduct: FC<ISectionProduct> = ({product, productId}) => {
                         </a>
 
                     </div>
-                    <div
-                        className={styles.productDescription}
-                        dangerouslySetInnerHTML={{__html: product.description}}
-                    />
 
                 </div>
             }
