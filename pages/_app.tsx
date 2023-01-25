@@ -25,7 +25,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   //       mode: 'cors'
   //     }
   //   })
-  // ]);
+  // ])'
+
+
+
 
   const client = new ApolloClient({
         cache: new InMemoryCache(),

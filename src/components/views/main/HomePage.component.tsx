@@ -47,7 +47,7 @@ const HomePage: FC<IHomePage> = ({products}) => {
                     <div className={styles.section}>
                         <ViewProductsView products={products} />
                     </div>
-                    <Link href={'./products'}>
+                    <Link href={'./products'} passHref>
                         <div className={styles.productSectionButton}>
                             Zobacz więcej...
                         </div>
@@ -57,7 +57,8 @@ const HomePage: FC<IHomePage> = ({products}) => {
                     <div className={styles.section}>
                         <TemplateBlog />
                     </div>
-                    <Link href={'./blog'}>
+                    <Link href={'./blog'} passHref
+                    >
                         <div className={styles.postSectionButton}>
                             Zobacz więcej...
                         </div>

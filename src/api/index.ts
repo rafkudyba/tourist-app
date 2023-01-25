@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const ApiInstance = axios.create({
-	baseURL: process.env.REACT_WEB_APP_API
+	baseURL: process.env.REACT_APP
 });
 
 export const endpoint = {

@@ -15,7 +15,7 @@ interface ICustomLink {
 const CustomLink: FC<ICustomLink> = ({href, name, page}) =>{
     return (
         <div className={styles.linkWr}>
-            <Link href={href}>
+            <Link href={href} passHref>
                 <div className={name === page ? styles.linkNameHighlighted : styles.linkName}>
                     {name}
                 </div>

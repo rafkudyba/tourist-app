@@ -62,7 +62,6 @@ const SectionProduct: FC<ISectionProduct> = ({productId}) => {
     const product = dummyProductsList.find((product) => {
         return product.id === productId;
     })
-    console.log(product)
     return (
         <>
             {product &&

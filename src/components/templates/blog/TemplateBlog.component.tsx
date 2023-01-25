@@ -55,6 +55,7 @@ const TemplateBlog: FC = ({children}) => {
                     <Link
                         href={`blog/${String(post.id)}`}
                         key={index}
+                        passHref
                     >
                         <div className={styles.post}>
                             <div

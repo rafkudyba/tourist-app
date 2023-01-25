@@ -125,6 +125,7 @@ const ViewProductsView: FC<IProductsView> = ({children, products}) => {
                                     <Link
                                         href={`products/${String(product.id)}`}
                                         key={index}
+                                        passHref
                                     >
                                         <div
                                             className={styles.button}

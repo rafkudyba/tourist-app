@@ -18,16 +18,13 @@ export interface IProduct {
 }
 
 interface IProductsPage {
-    products: IProduct[]
+    data: any & {getProducts: IProduct[]},
 }
 
-const ProductsPage: FC<IProductsPage> = ({products}) => {
-
-    // const { loading, error, data } = useQuery(QUERY_GET_PRODUCTS);
-    console.log(products)
+const ProductsPage: FC<IProductsPage> = ({data}) => {
     return (
         <TemplatePage page={"Produkty"}>
-            <ViewProductsView products={products} />
+            <ViewProductsView products={data.getProducts} />
         </TemplatePage>
     );
 }
@@ -36,20 +33,12 @@ export async function getStaticProps() {
     const { data } = await client.query({
         query: QUERY_GET_PRODUCTS,
     });
-    // // eslint-disable-next-line react-hooks/rules-of-hooks
-    // // const { loading, error, data } = useQuery(QUERY_GET_PRODUCTS);
-    // console.log(data)
-    // // const res = await fetch('https://.../posts')
-    // const posts = {}
 
     return {
         props: {
-            products: data.getProducts
+            data: data || []
         },
-        // Next.js will attempt to re-generate the page:
-        // - When a request comes in
-        // - At most once every 10 seconds
-        revalidate: 10, // In seconds
+        revalidate: 10,
     }
 }
 

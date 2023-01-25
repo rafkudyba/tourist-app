@@ -11,7 +11,7 @@ interface IButtonLink {
 
 const ButtonLink: FC<IButtonLink> = ({name, href}) =>{
     return (
-        <Link href={href}>
+        <Link href={href} passHref>
             <div className={styles.linkWr}>
                 {name}
             </div>

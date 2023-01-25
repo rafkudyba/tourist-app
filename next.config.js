@@ -21,5 +21,9 @@ module.exports = withReactSvg({
   output: {
     globalObject: 'this'
   },
-  include: path.resolve(__dirname, 'src/assets')
+  include: path.resolve(__dirname, 'src/assets'),
+  experimental: {
+    // Defaults to 50MB
+    isrMemoryCacheSize: 0,
+  },
 })

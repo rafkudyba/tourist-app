@@ -21,9 +21,10 @@ const Header: FC<IHeader> = ({page}) => {
         <div className={`fx_jc ${styles.headerContainer}`}>
             <div className={`fx_ac fx_sb ${styles.content}`}>
             <div className={`fx_ac ${styles.leftContent}`}>
-                <Link href={'/'}>
+                <Link href={'/'} passHref>
                     <Image
                         src={bandLogo}
+                        alt={''}
                         // layout={'intrinsic'}
                         // width={300}
                         // height={60}

@@ -12,6 +12,8 @@ const TemplateAdminPage: FC = ({children}) => {
                     Admin panel
                     <div className={styles.link}>
                         <LinkButton href={"/admin/add-product"} name={"Dodaj produkt"}  type={"secondary"} />
+                        <LinkButton href={"/admin/edit-product"} name={"Edytuj produkt"}  type={"secondary"} />
+                        <LinkButton href={"/admin/delete-product"} name={"Usuń produkt"}  type={"secondary"} />
                     </div>
                 </div>
             </div>

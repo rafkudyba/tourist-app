@@ -1,14 +1,15 @@
 import {FC, useEffect, useState} from 'react';
 
-import styles from './ViewCreateProduct.module.scss';
+import styles from './ViewEditProduct.module.scss';
 
 import dynamic from 'next/dynamic';
 import FieldInputText from '@/components/design-system/fields/field-inputs/field-input-text/FieldInputText.component';
-import {data, errorMessages, isValid, regexes, showErrors} from './ViewCreateProduct.data';
+import {data, errorMessages, isValid, regexes, showErrors} from './ViewEditProduct.data';
 import {useFormHook} from '@/components/form/form.hook';
 import ButtonSubmit from '@/components/design-system/button/button-submit/ButtonSubmit.component';
 import {MUTATION_CREATE_PRODUCT} from '@/api/mutation/MutationCreateProduct';
 import {useMutation} from '@apollo/client';
+import {MUTATION_UPDATE_PRODUCT} from '@/api/mutation/MutationUpdateProduct';
 
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {
     ssr: false,
@@ -55,9 +56,9 @@ const formats = [
     'video',
 ];
 
-const ViewCreateProductComponent: FC = ({children}) => {
+const ViewEditProductComponent: FC = ({children}) => {
 
-    const [mutateFunction, response] = useMutation(MUTATION_CREATE_PRODUCT);
+    const [mutateFunction, response] = useMutation(MUTATION_UPDATE_PRODUCT);
     const {onChange, formErrors, showError, isFormValid} = useFormHook(data, isValid, showErrors, regexes);
 
     const [quillContent, setQuillContent] = useState('')
@@ -65,6 +66,7 @@ const ViewCreateProductComponent: FC = ({children}) => {
     const [selectedImagesArray, setSelectedImagesArray] = useState<File[]>([]);
 
     const onFormSubmit = async (e: Event) => {
+        console.log(isFormValid)
         e.preventDefault()
         showError()
         if (isFormValid) {
@@ -87,7 +89,7 @@ const ViewCreateProductComponent: FC = ({children}) => {
                 description: quillContent,
                 imagesToUpload: imagesToUpload
             }
-            await mutateFunction({variables: {payload: requestBody}})
+            await mutateFunction({variables: {payload: requestBody, id: data.id}})
         }
     }
 
@@ -108,8 +110,18 @@ const ViewCreateProductComponent: FC = ({children}) => {
 
     return (
         <div className={styles.mainWr}>
-            <h1 className={styles.formHeader}>Dodaj produkt</h1>
+            <h1 className={styles.formHeader}>Edytuj produkt</h1>
             <form className={styles.contentWrapper}>
+                <FieldInputText
+                    label="Id"
+                    id="1"
+                    name="id"
+                    value={data.id}
+                    onChange={onChange}
+                    placeholder="ID"
+                    error={formErrors.id}
+                    errorMessage={errorMessages.id}
+                />
                 <FieldInputText
                     label="Nazwa"
                     id="1"
@@ -167,7 +179,7 @@ const ViewCreateProductComponent: FC = ({children}) => {
 
             <div className={styles.buttonWr}>
                 <ButtonSubmit
-                    name={"Dodaj produkt"}
+                    name={"Edytuj produkt"}
                     onClick={onFormSubmit}
                 />
             </div>
@@ -175,5 +187,5 @@ const ViewCreateProductComponent: FC = ({children}) => {
     );
 }
 
-export default ViewCreateProductComponent;
+export default ViewEditProductComponent;
 
