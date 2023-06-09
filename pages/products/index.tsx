@@ -3,18 +3,16 @@ import { FC } from "react";
 // Templates
 import TemplatePage from "@/components/templates/Layout.template";
 import ViewProductsView from '@/components/views/products/ViewProducts.view';
-import {QUERY_GET_PRODUCTS} from '@/api/query/QueryGetProducts';
-import client from './../../apollo-client'
+import axios from "axios";
 
 export interface IProduct {
-    id?: string;
+    postId?: string;
     name?: string;
-    description:string;
+    content:string;
     images: {
         src: string;
         alt: string;
-    }[]
-    olxLink: string;
+    }[];
 }
 
 interface IProductsPage {
@@ -24,19 +22,23 @@ interface IProductsPage {
 const ProductsPage: FC<IProductsPage> = ({data}) => {
     return (
         <TemplatePage page={"Produkty"}>
-            <ViewProductsView products={data.getProducts} />
+            <ViewProductsView products={data} />
         </TemplatePage>
     );
 }
 
 export async function getStaticProps() {
-    const { data } = await client.query({
-        query: QUERY_GET_PRODUCTS,
-    });
+    let data: IProduct[] = [];
+    await axios.get('http://localhost:8081/post').then(async (res)=> {
+        data = res.data;
+    }).catch(() => {
 
+    })
+
+    
     return {
         props: {
-            data: data || []
+            data: data || [],
         },
         revalidate: 10,
     }

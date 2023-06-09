@@ -21,6 +21,14 @@ module.exports = withReactSvg({
   output: {
     globalObject: 'this'
   },
+  async rewrites() {
+      return [
+        {
+          source: '/api/:path*',
+          destination: 'http://localhost:8081/:path*',
+        },
+      ]
+    },
   include: path.resolve(__dirname, 'src/assets'),
   experimental: {
     // Defaults to 50MB

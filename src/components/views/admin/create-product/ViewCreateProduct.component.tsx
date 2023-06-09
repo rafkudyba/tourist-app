@@ -7,58 +7,11 @@ import FieldInputText from '@/components/design-system/fields/field-inputs/field
 import {data, errorMessages, isValid, regexes, showErrors} from './ViewCreateProduct.data';
 import {useFormHook} from '@/components/form/form.hook';
 import ButtonSubmit from '@/components/design-system/button/button-submit/ButtonSubmit.component';
-import {MUTATION_CREATE_PRODUCT} from '@/api/mutation/MutationCreateProduct';
-import {useMutation} from '@apollo/client';
-
-const QuillNoSSRWrapper = dynamic(import('react-quill'), {
-    ssr: false,
-    loading: () => <p>Loading ...</p>,
-});
-
-const modules = {
-    toolbar: [
-        [{ header: '1' }, { header: '2' }, { font: [] }],
-        [{ size: [] }],
-        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-        [
-            { list: 'ordered' },
-            { list: 'bullet' },
-            { indent: '-1' },
-            { indent: '+1' },
-        ],
-        ['link', 'image', 'video'],
-        ['clean'],
-    ],
-    clipboard: {
-        // toggle to add extra line breaks when pasting HTML:
-        matchVisual: false,
-    },
-};
-/*
- * Quill editor formats
- * See https://quilljs.com/docs/formats/
- */
-const formats = [
-    'header',
-    'font',
-    'size',
-    'bold',
-    'italic',
-    'underline',
-    'strike',
-    'blockquote',
-    'list',
-    'bullet',
-    'indent',
-    'link',
-    'image',
-    'video',
-];
+import axios from 'axios';
 
 const ViewCreateProductComponent: FC = ({children}) => {
 
-    const [mutateFunction, response] = useMutation(MUTATION_CREATE_PRODUCT);
-    const {onChange, formErrors, showError, isFormValid} = useFormHook(data, isValid, showErrors, regexes);
+    const {onChange, formErrors, showError, isFormValid, changeFormState} = useFormHook(data, isValid, showErrors, regexes);
 
     const [quillContent, setQuillContent] = useState('')
     const [selectedImages, setSelectedImages] = useState<FileList | undefined | null>(undefined);
@@ -69,6 +22,7 @@ const ViewCreateProductComponent: FC = ({children}) => {
         showError()
         if (isFormValid) {
             let imagesToUpload: {data: string, name: string, format: string}[] = []
+           
             await Promise.all(selectedImagesArray.map(async (image) => {
                 const imageStr = await toBase64(image);
                 if (!imageStr) return;
@@ -83,11 +37,19 @@ const ViewCreateProductComponent: FC = ({children}) => {
 
             const requestBody = {
                 name: data.name,
-                olxLink: data.olxLink,
-                description: quillContent,
+                content: data.content,
                 imagesToUpload: imagesToUpload
-            }
-            await mutateFunction({variables: {payload: requestBody}})
+            } 
+            axios.post('http://localhost:8081/post/create',requestBody, {
+                headers: {
+                    'Accept': '*/*',
+                    'Authorization': `${localStorage.getItem('token')}`
+                }
+            }).then((res) => {
+                console.log(res);
+                changeFormState('name', ' ');
+            })
+            // await mutateFunction({variables: {payload: requestBody}})
         }
     }
 
@@ -108,7 +70,7 @@ const ViewCreateProductComponent: FC = ({children}) => {
 
     return (
         <div className={styles.mainWr}>
-            <h1 className={styles.formHeader}>Dodaj produkt</h1>
+            <h1 className={styles.formHeader}>Dodaj post</h1>
             <form className={styles.contentWrapper}>
                 <FieldInputText
                     label="Nazwa"
@@ -120,26 +82,16 @@ const ViewCreateProductComponent: FC = ({children}) => {
                     error={formErrors.name}
                     errorMessage={errorMessages.name}
                 />
-                <FieldInputText
-                    label="Link do portalu olx.pl"
-                    id="2"
-                    name="olxLink"
-                    value={data.olxLink}
-                    onChange={onChange}
-                    placeholder="Link do portalu olx.pl"
-                    error={formErrors.olxLink}
-                    errorMessage={errorMessages.olxLink}
-                />
                 <div className={styles.quillWr}>
-                    <p>Opis produktu</p>
-                    <QuillNoSSRWrapper
-                        modules={modules}
-                        formats={formats}
-                        placeholder={"Opis produktu"}
-                        theme="snow"
-                        onChange={(content) => {
-                            setQuillContent(content)
-                        }}
+                    <FieldInputText
+                        label="Treść"
+                        id="2"
+                        name="content"
+                        value={data.content}
+                        onChange={onChange}
+                        placeholder="Treść"
+                        error={formErrors.content}
+                        errorMessage={errorMessages.content}
                     />
                     {/*<p className="ql-editor" dangerouslySetInnerHTML={{__html: quillContent}}/>*/}
                 </div>
@@ -167,7 +119,7 @@ const ViewCreateProductComponent: FC = ({children}) => {
 
             <div className={styles.buttonWr}>
                 <ButtonSubmit
-                    name={"Dodaj produkt"}
+                    name={"Dodaj post"}
                     onClick={onFormSubmit}
                 />
             </div>

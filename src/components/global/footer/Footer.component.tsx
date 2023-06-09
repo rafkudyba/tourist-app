@@ -17,9 +17,9 @@ const Footer: FC<IFooter> = () => {
             <div className={styles.content}>
                 <div className={`fx_ac fx_jc ${styles.wrapper}`}>
                     <div className={`fx_sa ${styles.linksWr}`}>
-                        <Link href="/blog">Blog</Link>
-                        <Link href="/blog">Blog</Link>
-                        <Link href="/blog">Blog</Link>
+                        <Link href="/">Strona główna</Link>
+                        <Link href="/products">Posty</Link>
+                        <Link href="/admin/login">Zaloguj</Link>
                     </div>
                 </div>
                 <div className={styles.bottomWrapper}>

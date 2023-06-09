@@ -6,8 +6,6 @@ import TemplatePage from '@/components/templates/Layout.template';
 
 // Components
 import HomePage from '@/components/views/main/HomePage.component';
-import client from '../apollo-client';
-import {QUERY_GET_PRODUCTS} from '@/api/query/QueryGetProducts';
 import {IProduct} from './products';
 
 interface IMainPage {
@@ -23,13 +21,13 @@ const MainPage: FC<IMainPage> = ({products}) => {
 }
 
 export async function getStaticProps() {
-    const { data } = await client.query({
-        query: QUERY_GET_PRODUCTS,
-    });
+
+    //TODO: get products
+    const data: any[] = [];
 
     return {
         props: {
-            products: data.getProducts
+            products: data,
         },
         revalidate: 10,
     }

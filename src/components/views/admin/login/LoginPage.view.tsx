@@ -19,12 +19,11 @@ import {
 
 //Graphql
 import {useMutation} from '@apollo/client';
-import {MUTATION_LOGIN_USER} from '@/api/mutation/MutationLoginUser';
 import {useRouter} from 'next/router';
+import axios from 'axios';
 
 const LoginPageView: FC = () => {
     const router = useRouter();
-    const [loginUser, error] = useMutation(MUTATION_LOGIN_USER);
     const [areCredentialsCorrect, setAreCredentialsCorrect] = useState(true);
     const [token, setToken] = useState('');
     const {
@@ -38,21 +37,32 @@ const LoginPageView: FC = () => {
         showErrors,
         regexes);
 
+    const saveTokenInStorage = (token: string) => {
+        localStorage.setItem('token', token);
+    }
+
     const onLoginClick = (e: Event) => {
         e.preventDefault()
         showError()
         if (isFormValid) {
-            loginUser({variables: {payload: data}}).then((res) => {
-                if (res.data.loginUser !== "false") {
-                    setAreCredentialsCorrect(true)
-                    setToken(res.data.loginUser);
-
+                if (true) {
+                    axios.post('http://localhost:8081/api/auth/signin', {
+                        
+                            "username": data.username,
+                            "password": data.password
+                          
+                    }).then((res) => {
+                        setAreCredentialsCorrect(true)
+                        setToken('asd');
+                        saveTokenInStorage(res.data.accessToken)
                         router.push('add-product')
+                        console.log(res)
+                    }).catch(console.error)
+                    setAreCredentialsCorrect(true)
+                    // setToken('asd');
+
                 } else {
-                    setAreCredentialsCorrect(false)
                 }
-            }).catch(() => {
-                setAreCredentialsCorrect(false)})
         }
     }
 

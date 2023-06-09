@@ -30,14 +30,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 
 
-  const client = new ApolloClient({
-        cache: new InMemoryCache(),
-        uri: 'http://localhost:3002/graphql'
-      })
   return(
-    <ApolloProvider client={client}>
-      <Component {...pageProps} />
-    </ApolloProvider>)
+      <Component {...pageProps} />)
 }
 
 export default MyApp

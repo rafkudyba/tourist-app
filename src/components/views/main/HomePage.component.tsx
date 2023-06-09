@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import {FC} from 'react';
+import {FC, useEffect} from 'react';
 import Link from 'next/link'
 
 // Styles
@@ -34,16 +34,25 @@ const HomePage: FC<IHomePage> = ({products}) => {
                         <div className={styles.mediaIcon}>
                             {/*<SVGFacebookIcon />*/}
                             {/*<img src="./../../../../public/assets/facebook_icon.svg" alt="Facebook Icon"/>*/}
-                            <YouTubeIcon sx={{ fontSize: 80 }}/>
-                            <FacebookIcon sx={{ fontSize: 80 }}/>
-                            <InstagramIcon sx={{ fontSize: 80 }}/>
-                            <NotStartedIcon sx={{ fontSize: 80 }}/>
+                          
+                            <a href='https://www.youtube.com/'>  <YouTubeIcon/></a>
+                            <a href='https://www.facebook.com/'>
+                            
+                            <FacebookIcon/></a>
+                            <InstagramIcon/>
+                            <a href='https://instagram.com/'>
+                            <NotStartedIcon/></a>
                             {/*<svg data-testid="YouTubeIcon"></svg>*/}
 
                         </div>
                     </div>
                 </div>
-                <div className={styles.productSection}>
+                    <div className={styles.bioSection}>
+                        - Turystyka to nasza pasja -
+                </div>
+                
+                
+                {products.length && <div className={styles.productSection}>
                     <div className={styles.section}>
                         <ViewProductsView products={products} />
                     </div>
@@ -52,18 +61,7 @@ const HomePage: FC<IHomePage> = ({products}) => {
                             Zobacz więcej...
                         </div>
                     </Link>
-                </div>
-                <div className={styles.postSection}>
-                    <div className={styles.section}>
-                        <TemplateBlog />
-                    </div>
-                    <Link href={'./blog'} passHref
-                    >
-                        <div className={styles.postSectionButton}>
-                            Zobacz więcej...
-                        </div>
-                    </Link>
-                </div>
+                </div>}
 
             </div>
     )

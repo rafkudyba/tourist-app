@@ -32,6 +32,12 @@
                 max-height: 60px !important;
                 cursor: pointer;
             }
+
+            @media (max-width:600px) {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
         }
       
         .rightContent {
@@ -48,6 +54,11 @@
                 width: 80%;
                 height: 100%;
                 max-width: 300px;
+            }
+
+            @media (max-width:600px) {
+                display: none;
+                width: 0;
             }
         }
     }

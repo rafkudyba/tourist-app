@@ -72,5 +72,5 @@ export const useFormHook = (
         setValidation(true);
     }
 
-    return {onChange, formErrors, showError, isFormValid}
+    return {onChange, formErrors, showError, isFormValid, changeFormState}
 }

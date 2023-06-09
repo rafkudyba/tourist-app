@@ -7,9 +7,7 @@ import FieldInputText from '@/components/design-system/fields/field-inputs/field
 import {data, errorMessages, isValid, regexes, showErrors} from './ViewEditProduct.data';
 import {useFormHook} from '@/components/form/form.hook';
 import ButtonSubmit from '@/components/design-system/button/button-submit/ButtonSubmit.component';
-import {MUTATION_CREATE_PRODUCT} from '@/api/mutation/MutationCreateProduct';
-import {useMutation} from '@apollo/client';
-import {MUTATION_UPDATE_PRODUCT} from '@/api/mutation/MutationUpdateProduct';
+import axios from 'axios';
 
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {
     ssr: false,
@@ -57,8 +55,6 @@ const formats = [
 ];
 
 const ViewEditProductComponent: FC = ({children}) => {
-
-    const [mutateFunction, response] = useMutation(MUTATION_UPDATE_PRODUCT);
     const {onChange, formErrors, showError, isFormValid} = useFormHook(data, isValid, showErrors, regexes);
 
     const [quillContent, setQuillContent] = useState('')
@@ -84,12 +80,28 @@ const ViewEditProductComponent: FC = ({children}) => {
             }))
 
             const requestBody = {
+                // postId: Number(data.id),
                 name: data.name,
-                olxLink: data.olxLink,
-                description: quillContent,
+                content: data.content,
                 imagesToUpload: imagesToUpload
             }
-            await mutateFunction({variables: {payload: requestBody, id: data.id}})
+            
+            axios.patch(`http://localhost:8081/post/${data.id}/update`,{
+                name: 'posctowy',
+                content: '123',
+                postId: '77'
+            }, {
+                headers: {
+                    'Accept': '*/*',
+                    'Authorization': `${localStorage.getItem('token')}`
+                }
+            }).then((res) => {
+                console.log(res);
+                data.name ="";
+                data.content = "";
+                data.id = "";
+            })
+            // await mutateFunction({variables: {payload: requestBody, id: data.id}})
         }
     }
 
@@ -110,7 +122,7 @@ const ViewEditProductComponent: FC = ({children}) => {
 
     return (
         <div className={styles.mainWr}>
-            <h1 className={styles.formHeader}>Edytuj produkt</h1>
+            <h1 className={styles.formHeader}>Edytuj post</h1>
             <form className={styles.contentWrapper}>
                 <FieldInputText
                     label="Id"
@@ -132,26 +144,16 @@ const ViewEditProductComponent: FC = ({children}) => {
                     error={formErrors.name}
                     errorMessage={errorMessages.name}
                 />
-                <FieldInputText
-                    label="Link do portalu olx.pl"
-                    id="2"
-                    name="olxLink"
-                    value={data.olxLink}
-                    onChange={onChange}
-                    placeholder="Link do portalu olx.pl"
-                    error={formErrors.olxLink}
-                    errorMessage={errorMessages.olxLink}
-                />
                 <div className={styles.quillWr}>
-                    <p>Opis produktu</p>
-                    <QuillNoSSRWrapper
-                        modules={modules}
-                        formats={formats}
-                        placeholder={"Opis produktu"}
-                        theme="snow"
-                        onChange={(content) => {
-                            setQuillContent(content)
-                        }}
+                    <FieldInputText
+                        label="Treść"
+                        id="2"
+                        name="content"
+                        value={data.content}
+                        onChange={onChange}
+                        placeholder="Treść"
+                        error={formErrors.content}
+                        errorMessage={errorMessages.content}
                     />
                     {/*<p className="ql-editor" dangerouslySetInnerHTML={{__html: quillContent}}/>*/}
                 </div>
